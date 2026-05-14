@@ -5,6 +5,7 @@ Pedro Henrique Bettega Trama - RA: 10769933
 
 Turma 01D - L12
 '''
+
 # função que exibe o menu inicial e as opções
 def menu_inicial():
     print("+" * 10, "SUPER TRUNFO", "+" * 10)
