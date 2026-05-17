@@ -7,6 +7,10 @@ Turma 01D - L12
 '''
 import random
 
+# gabarito dos atributos
+# índices: 0=Nome, 1=Cilindradas, 2=Potência, 3=Torque, 4=RPM, 5=Peso 
+gabarito = ["Nome", "Cilindradas", "Potência (hp)", "Torque (rpm)", "RPM", "Peso (kg)"]
+
 baralho = [ # lista de cartas
     ["Bimota TESI 2D", 992, 92, 6000, 8000, 149],
     ["Ducati Monster", 1000, 98, 7700, 8800, 190],
@@ -30,30 +34,31 @@ baralho = [ # lista de cartas
 cartas = random.sample(baralho, k=len(baralho)) # embaralha as cartas do jogo
 
 # divide a lista e distribui as cartas para cada jogador (sem repetições)
-mao_jogador1 = cartas[:3] 
-mao_jogador2 = cartas[3:]
+mao_jogador1 = cartas[:8] 
+mao_jogador2 = cartas[8:]
 
 descarte = [] # pílha de descarte (caso haja empate)
 
-# função que exibe o menu inicial e as opções
-def menu_inicial():
-    print("+" * 10, "SUPER TRUNFO", "+" * 10)
-    print("Opções: \n")
-    print("1. Single Player")
-    print("2. Multiplayer")
-    print("3. Sair\n")
-    opcao = int(input("Selecione uma opção: "))
+print(f"Nome:           {mao_jogador1[0][0]}")
+print(f"Cilindradas:    {mao_jogador1[0][1]}")
+print(f"Potência (hp):  {mao_jogador1[0][2]}")
+print(f"Torque (rpm):   {mao_jogador1[0][3]}")
+print(f"RPM:            {mao_jogador1[0][4]}")
+print(f"Peso (kg):      {mao_jogador1[0][5]}")
+print()
+atributo_j1 = int(input("1. Cilindradas \n" \
+"2. Potência\n" \
+"3. Torque\n" \
+"4. RPM\n" \
+"5. Peso\n" \
+"Digite uma das opções: "))
 
-    while opcao < 1 or opcao > 3:
-        print("Opção inválida!")
-        opcao = int(input("Selecione uma opção: "))
-    
-    if opcao == 1:
-        print("Você escolheu: Single Player")
-    elif opcao == 2:
-        print("Você escolheu: Multiplayer")
-    elif opcao == 3:
-        print("Você escolheu: Sair\n Encerrando...")
-
-
-menu_inicial() # função que executa o menu inicial do jogo
+# verificação da opção escolhida pelo usuário
+while atributo_j1 < 1 or atributo_j1 > 5:
+    print("Opção inválida!")
+    atributo_j1 = int(input("1. Cilindradas \n" \
+    "2. Potência\n" \
+    "3. Torque\n" \
+    "4. RPM\n" \
+    "5. Peso\n" \
+    "Digite uma das opções: "))

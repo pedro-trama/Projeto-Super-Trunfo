@@ -16,7 +16,7 @@ cartas = random.sample(lista, k=len(lista)) # embaralha as cartas do jogo
 mao_jogador1 = cartas[:3] 
 mao_jogador2 = cartas[3:]
 
-descarte = [] # pílha de descarte (caso haja empate)
+descarte = [] # pilha de descarte (caso haja empate)
 
 print(f"Nome:           {mao_jogador1[0][0]}")
 print(f"Cilindradas:    {mao_jogador1[0][1]}")
@@ -32,19 +32,41 @@ atributo_j1 = int(input("1. Cilindradas \n" \
 "5. Peso\n" \
 "Digite uma das opções: "))
 
-atributo_j2 = random.randint(1, 5) # escolha aleatória do jogador 2 
-
-# vez do jogador 1
-while len(mao_jogador1) != 0:
-    # se o atributo do jogador 1 for maior do que o do jogador 2
-    if mao_jogador1[0][atributo_j1] > mao_jogador2[0][atributo_j1]:
-        mao_jogador1.append(mao_jogador2[0])
-        mao_jogador2.pop(0)
-        print("Jogador 1 venceu a rodada")
-    # se o atributo do jogador 2 for maior do que o do jogador 1
-    elif mao_jogador1[0][atributo_j1] < mao_jogador2[0][atributo_j1]:
-        mao_jogador2.append(mao_jogador1[0])
-        mao_jogador1.pop(0)
-        print("Jogador 2 venceu a rodada")
-
+def distribuir_cartas(baralho): # distribui as cartas entre os jogadores
+    qtd_cartas = len(lista)
+    cartas_player1 = qtd_cartas // 2
+    cartas_player2 = qtd_cartas // 2
+    cartas = random.sample(baralho, k=qtd_cartas)
+    deck_player1 = cartas[:cartas_player1]
+    deck_player2 = cartas[cartas_player2:]
+    return deck_player1, deck_player2
     
+
+
+def single_player(): # usuário contra o computador 
+    distribuir_cartas(lista)
+
+
+
+# função que exibe o menu inicial e as opções
+def menu_inicial():
+    print("+" * 10, "SUPER TRUNFO", "+" * 10)
+    print("Opções: \n")
+    print("1. Single Player")
+    print("2. Multiplayer")
+    print("3. Sair\n")
+    opcao = int(input("Selecione uma opção: "))
+
+    while opcao < 1 or opcao > 3:
+        print("Opção inválida!")
+        opcao = int(input("Selecione uma opção: "))
+    
+    if opcao == 1:
+        print("Você escolheu: Single Player")
+    elif opcao == 2:
+        print("Você escolheu: Multiplayer")
+    elif opcao == 3:
+        print("Você escolheu: Sair\n Encerrando...")
+
+
+menu_inicial() # função que executa o menu inicial do jogo
