@@ -51,7 +51,8 @@ def criar_baralho():
 
     return baralho
 
-def distribuir_cartas(baralho): # função que distribui as cartas entre os jogadores
+# função que distribui as cartas entre os jogadores
+def distribuir_cartas(baralho): 
 
     metade = len(baralho) // 2
 
@@ -60,7 +61,8 @@ def distribuir_cartas(baralho): # função que distribui as cartas entre os joga
 
     return jogador1, jogador2
 
-def mostrar_carta(carta): # função que mostra a carta do topo do usuário 
+# função que mostra a carta do topo do usuário
+def mostrar_carta(carta):  
     print("\n===== SUA CARTA =====")
 
     print(f"Nome:           {carta[0]}")
@@ -70,7 +72,8 @@ def mostrar_carta(carta): # função que mostra a carta do topo do usuário
     print(f"RPM:            {carta[4]}")
     print(f"Peso:           {carta[5]}")
 
-def escolher_atributo(): # função que escolhe o atributo da carta
+# função que o jogador escolhe o atributo da carta
+def escolher_atributo(): 
     print("\nEscolha um atributo:")
 
     print("1. Cilindradas")
@@ -81,12 +84,13 @@ def escolher_atributo(): # função que escolhe o atributo da carta
 
     atributo = int(input("Digite uma opção: "))
 
-    while atributo < 1 or atributo > 5:
+    while atributo < 1 or atributo > 5: # Recurso de validação
         atributo = int(input("Escolha inválida. Digite de 1 a 5: "))
     
     return atributo
 
-def comparar_cartas(carta1, carta2, atributo): # função que compara as cartas dos jogadores
+# função que compara os atributos entre as cartas exibidas
+def comparar_cartas(carta1, carta2, atributo): 
     if carta1[atributo] > carta2[atributo]:
         return 1
     elif carta1[atributo] < carta2[atributo]:
@@ -94,7 +98,8 @@ def comparar_cartas(carta1, carta2, atributo): # função que compara as cartas 
     else:
         return 0
 
-def jogar_rodada(jogador1, jogador2, descarte): # função que executa uma rodada
+# função que executa uma rodada
+def jogar_rodada(jogador1, jogador2, descarte): 
     carta1 = jogador1.pop(0)
     carta2 = jogador2.pop(0)
 
@@ -110,7 +115,8 @@ def jogar_rodada(jogador1, jogador2, descarte): # função que executa uma rodad
 
     vencedor = comparar_cartas(carta1, carta2, atributo)
 
-    if vencedor == 1: # vitória do jogador
+    # caso o jogador 1 vença
+    if vencedor == 1: 
         print("\nJogador 1 venceu a rodada!")
         jogador1.append(carta1)
         jogador1.append(carta2)
@@ -120,7 +126,8 @@ def jogar_rodada(jogador1, jogador2, descarte): # função que executa uma rodad
             jogador1.extend(descarte)
             descarte.clear()
     
-    elif vencedor == 2: # vitória do adversário
+    # caso o jogador 2 vença
+    elif vencedor == 2: 
         print("\nJogador 2 venceu a rodada!")
         jogador2.append(carta1)
         jogador2.append(carta2)
@@ -130,7 +137,8 @@ def jogar_rodada(jogador1, jogador2, descarte): # função que executa uma rodad
             jogador2.extend(descarte)
             descarte.clear()
 
-    else: # empate
+    # em caso de empate
+    else: 
         print("\nEmpate!")
         print("As cartas vão para a pilha de descarte.")
         descarte.append(carta1)
@@ -139,7 +147,8 @@ def jogar_rodada(jogador1, jogador2, descarte): # função que executa uma rodad
     print(f"Jogador 1: {len(jogador1)}")
     print(f"Jogador 2: {len(jogador2)}")
 
-def single_player(): # usuário contra o computador 
+# usuário contra o computador 
+def single_player(): 
     baralho = criar_baralho()
     mao_jogador1, mao_jogador2 = distribuir_cartas(baralho)
     descarte = []
@@ -165,11 +174,11 @@ def single_player(): # usuário contra o computador
     print()
     main() # volta para o menu inicial
 
-
-def multiplayer(): # usuário contra outro jogador
+# usuário contra outro jogador
+def multiplayer():
     baralho = criar_baralho()
     mao_jogador1, mao_jogador2 = distribuir_cartas(baralho)
-    descarte = []
+    descarte = [] # pilha de descarte (em caso de empate)
     rodada = 1
 
     while len(mao_jogador1) > 0 and len(mao_jogador2) > 0:
@@ -184,19 +193,22 @@ def multiplayer(): # usuário contra outro jogador
     print("\n==========================")
     print("        FIM DE JOGO     ")
     print("==========================")
+
+    # vitória do jogador 1
     if len(mao_jogador1) > 0:
         print("Vitória do Jogador 1")
-
+    # vitória do jogador 2
     else:
         print("Vitória do Jogador 2!")
     print()
     main() # volta para o menu inicial
 
-def sair():
+# caso o usuário deseja sair do jogo
+def sair(): 
     print("Saindo do jogo. Encerrando...")
 
-
-def main(): # função principal
+# função principal do programa
+def main(): 
 
     opcao = menu_inicial()
 
@@ -207,4 +219,4 @@ def main(): # função principal
     elif opcao == 3:
         sair()
 
-main()
+main() # chamada da função principal
